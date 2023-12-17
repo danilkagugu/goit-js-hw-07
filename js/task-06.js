@@ -10,7 +10,6 @@ function getRandomHexColor() {
 }
 
 function createBoxes(amount) {
-  deleteBoxes();
   let size = 30;
   for (let i = 0; i < amount; i += 1) {
     divBox.insertAdjacentHTML(
@@ -22,23 +21,19 @@ function createBoxes(amount) {
 }
 
 function onCreateBox() {
+  onDestroy();
   const amount = input.value;
   if (amount <= 0 || amount > 100) {
     alert("Please, write the correct condition: '1-100' 😊");
     return;
   }
   createBoxes(amount);
-}
-
-function deleteBoxes() {
-  while (divBox.firstChild) {
-    divBox.firstChild.remove();
-  }
-}
-
-function deleteBox() {
-  deleteBoxes();
   input.value = "";
 }
+
+function onDestroy() {
+  divBox.innerHTML = "";
+}
+
 btnCreate.addEventListener("click", onCreateBox);
-btnDestroy.addEventListener("click", deleteBox);
+btnDestroy.addEventListener("click", onDestroy);
