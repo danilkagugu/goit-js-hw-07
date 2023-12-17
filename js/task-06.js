@@ -10,21 +10,24 @@ function getRandomHexColor() {
 }
 
 function createBoxes(amount) {
-  const inputNum = parseInt(input.value);
-  if (inputNum <= 0 || inputNum > 100) {
-    alert("Please, write the correct condition: '1-100' 😊");
-    return;
-  }
   deleteBoxes();
   let size = 30;
-  for (let i = 0; i < inputNum; i += 1) {
+  for (let i = 0; i < amount; i += 1) {
     divBox.insertAdjacentHTML(
       "beforeend",
       `<div style = "background-color: ${getRandomHexColor()}; width: ${size}px; height: ${size}px"></div>`
     );
     size += 10;
   }
-  input.value = "";
+}
+
+function onCreateBox() {
+  const amount = input.value;
+  if (amount <= 0 || amount > 100) {
+    alert("Please, write the correct condition: '1-100' 😊");
+    return;
+  }
+  createBoxes(amount);
 }
 
 function deleteBoxes() {
@@ -37,5 +40,5 @@ function deleteBox() {
   deleteBoxes();
   input.value = "";
 }
-btnCreate.addEventListener("click", createBoxes);
+btnCreate.addEventListener("click", onCreateBox);
 btnDestroy.addEventListener("click", deleteBox);

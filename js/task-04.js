@@ -1,5 +1,4 @@
 const formLogin = document.querySelector(".login-form");
-const btn = document.querySelector(".submit");
 formLogin.addEventListener("submit", (e) => {
   e.preventDefault();
   const elems = e.target.elements;
